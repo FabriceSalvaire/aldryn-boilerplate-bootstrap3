@@ -1,0 +1,2 @@
+{# -*- engine: django -*- #}
+{% load i18n %}{% blocktrans %}Thank you for signing up to "{{ event_name }}"{% endblocktrans %}
