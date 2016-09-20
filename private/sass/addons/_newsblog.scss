@@ -1,0 +1,109 @@
+// #############################################################################
+// Newsblog
+
+$newsblog-rule-linewidth: 2px;
+$newsblog-rule-color: $gray-lighter;
+
+.aldryn-newsblog-article {
+    // Add a rule
+    padding-top: 2*$padding-large-vertical;
+    padding-bottom: 2*$padding-large-vertical;
+    border-bottom: $newsblog-rule-linewidth solid $newsblog-rule-color;
+}
+
+// Set category typography
+.aldryn-newsblog .category {
+    font-weight: 700;
+}
+
+// News metadata : author and data
+.aldryn-newsblog-meta {
+    // Author image
+    img {
+	width: 40px;
+	height: 40px;
+	margin: 0 $padding-small-horizontal 0 0; // thumbnail-padding
+	border-radius: $thumbnail-border-radius;
+    }
+
+    p {
+	margin: 0;
+    }
+}
+
+// #####################################
+// Newsblog Sidebar
+
+// Add a rule to separate elements in the sidebar
+.aldryn-newsblog-article-search,
+.aldryn-newsblog-authors,
+.aldryn-newsblog-categories,
+.aldryn-newsblog-recommended,
+.aldryn-newsblog-tags {
+    padding-bottom: $padding-large-vertical;
+    border-bottom: $newsblog-rule-linewidth solid $newsblog-rule-color;
+}
+
+// Element title in the sidebar
+.aldryn-newsblog-sidebar h3 {
+    display: inline-block; // to restrict rule to the title width
+    font-size: $font-size-base;
+    margin-bottom: $padding-large-vertical;
+    // add a rule
+    padding-bottom: $padding-small-vertical;
+    border-bottom: $newsblog-rule-linewidth solid $mytheme-highlighted-color;
+}
+
+.aldryn-newsblog-categories {
+    .badge {
+	// display: none;
+	float: right;
+    }
+
+    a {
+	color: $text-color;
+	text-transform: uppercase;
+	display: block; // add margin bottom space
+	margin-bottom: $padding-small-vertical;
+	padding-left: $padding-small-horizontal;
+    }
+
+    .active a,
+    a:hover {
+	color: $mytheme-highlighted-color;
+	border-left: $newsblog-rule-linewidth solid $mytheme-highlighted-color;
+    }
+}
+
+.aldryn-newsblog-authors {
+    .aldryn-newsblog-meta {
+	// font-size: 13px;
+	min-height: 50px;
+	// padding: 0;
+	// border-bottom: none;
+    }
+
+    .badge {
+	float: right !important;
+    }
+}
+
+.aldryn-newsblog-tags ul > li {
+    display: inline-block;
+    background-color: $gray-dark;
+    border-radius: $border-radius-base;
+    padding-top: $padding-small-vertical;
+    padding-bottom: $padding-small-vertical;
+    padding-left: $padding-small-horizontal;
+    padding-right: $padding-small-horizontal;
+    margin-left: $padding-small-vertical;
+
+    a {
+	color: #fff;
+    }
+
+    .badge {
+	background-color: $gray-darker;
+	padding-right: 0;
+    }
+}
