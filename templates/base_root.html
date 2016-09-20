@@ -33,7 +33,7 @@
 {% include "includes/analytics.html" %}
 {% cms_toolbar %}
 
-{% block extend_root %}{% endblock %}
+{# BODY contents #}{% block extend_root %}{% endblock %}
 
 <script src="{% static 'js/libs/jquery.min.js' %}"></script>
 <script src="{% static 'js/libs/bootstrap.min.js' %}"></script>
@@ -42,7 +42,7 @@
 <script src="{% static 'js/addons/cl.utils.js' %}"></script>
 <script src="{% static 'js/base.js' %}"></script>
 {% render_block "js" %}
-{% block extrafoot %}{% endblock %}
+{# Extra Foot #}{% block extrafoot %}{% endblock %}
 {{ ALDRYN_SNAKE.render_tail }}
 <div class="browser-outdated" id="outdated" hidden="hidden">
     <noscript><h3>{% trans "Please enable JavaScript" %}</h3></noscript>

@@ -8,15 +8,15 @@
 {% block extend_root %}
 {% block header %}
     {# DOCS: http://getbootstrap.com/components/#navbar #}
-    <header class="navbar navbar-head">
+    <header class="navbar navbar-head navbar-inverse">
         <div class="container">
-            {# INFO: the logo should be placed first for seo reasons #}
+            {# INFO: the logo should be placed first for seo (Search Engine Optimization) reasons #}
             <div class="navbar-header">
                 {# INFO: the logo should be placed first for seo reasons #}
                 <h1 class="navbar-brand">
                     <a href="{% url "pages-root" %}">
                         <span class="sr-only">{{ request.site.name }}</span>
-                        <img src="{% static "img/logo-main@print.png" %}" alt="{{ request.site.name }}" />
+                        <img src="{% static "img/logo.svg" %}" alt="{{ request.site.name }}" height="35" />
                     </a>
                 </h1>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".js-navbar-header">
@@ -74,9 +74,7 @@
 <hr class="sr-only" id="page-content" />
 {% block extend_base %}
     {% block feature %}{% placeholder "feature" %}{% endblock feature %}
-    {% block messages %}
-        {% include "includes/messages.html" %}
-    {% endblock messages %}
+    {% block messages %}{% include "includes/messages.html" %}{% endblock messages %}
     {% block content %}{% endblock %}
 {% endblock extend_base %}
 <hr class="sr-only" />
@@ -90,10 +88,13 @@
             {% static_placeholder "footer" %}
             {% render_model_block request.current_page "changelist" %}
                 <ul class="list-inline">
-                    <li class="pull-right"><a href="#page-top" data-spy="scroll"><span class="fa fa-left fa-arrow-up"></span>{% trans "Back to top" %}</a></li>
+                    <li class="pull-right"><a href="#page-top" data-spy="scroll"><span class="fa fa-left fa-arrow-up"></span> {% trans "Back to top" %}</a></li>
                     {% show_menu_below_id "footer" 0 0 100 100 "includes/menu/navigation.html" %}
                 </ul>
             {% endrender_model_block %}
+            <div class="col-sm-16">
+                <p>CopyRight © 2016 Bleausard.fr</p>
+            </div>
         </div>
     </footer>
 {% endblock footer %}
