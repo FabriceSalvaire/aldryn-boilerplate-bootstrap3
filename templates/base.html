@@ -50,7 +50,7 @@
                     </nav>
                 {% endblock navbar %}
             </div>
-        </div>
+        </div>{# container #}
     </header>
 {% endblock header %}
 
@@ -73,9 +73,11 @@
 {# start: content #}
 <hr class="sr-only" id="page-content" />
 {% block extend_base %}
-    {% block feature %}{% placeholder "feature" %}{% endblock feature %}
-    {% block messages %}{% include "includes/messages.html" %}{% endblock messages %}
-    {% block content %}{% endblock %}
+    <div class="container">
+	{% block feature %}{% placeholder "feature" %}{% endblock feature %}
+	{% block messages %}{% include "includes/messages.html" %}{% endblock messages %}
+	{% block content %}{% endblock %}
+    </div>
 {% endblock extend_base %}
 <hr class="sr-only" />
 {# end: content #}
