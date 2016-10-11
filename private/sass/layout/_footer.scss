@@ -6,7 +6,16 @@
 // getting to large
 
 footer {
+    @include rised-component();
     padding: 2*$padding-large-vertical 0;
     background: $navbar-inverse-bg;
-    color: $navbar-inverse-color;
+    color: white; // $navbar-inverse-color
+
+    a {
+	color: white;
+
+	&:hover {
+	    color: white;
+	}
+    }
 }

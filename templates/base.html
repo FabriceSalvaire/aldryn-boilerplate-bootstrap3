@@ -50,25 +50,25 @@
                     </nav>
                 {% endblock navbar %}
             </div>
-        </div>{# container #}
+
+	    {# DOCS: http://getbootstrap.com/components/#breadcrumbs #}
+	    {% block breadcrumb %}
+		{% if not request.current_page.is_home %}
+		    <nav class="navbar-breadcrumb" role="navigation">{# .navbar #}
+			<h3 class="sr-only">{% trans "You are here" %}</h3>
+			<div class="container">
+			    <ol class="breadcrumb">
+				{% block extend_breadcrumb %}
+				    {% show_breadcrumb 0 "includes/menu/breadcrumb.html" %}
+				{% endblock extend_breadcrumb %}
+			    </ol>
+			</div>
+		    </nav>
+		{% endif %}
+	    {% endblock breadcrumb %}
+	</div>{# container #}
     </header>
 {% endblock header %}
-
-{# DOCS: http://getbootstrap.com/components/#breadcrumbs #}
-{% block breadcrumb %}
-    {% if not request.current_page.is_home %}
-        <nav class="navbar navbar-breadcrumb" role="navigation">
-            <h3 class="sr-only">{% trans "You are here" %}</h3>
-            <div class="container">
-                <ol class="breadcrumb">
-                    {% block extend_breadcrumb %}
-                        {% show_breadcrumb 0 "includes/menu/breadcrumb.html" %}
-                    {% endblock extend_breadcrumb %}
-                </ol>
-            </div>
-        </nav>
-    {% endif %}
-{% endblock breadcrumb %}
 
 {# start: content #}
 <hr class="sr-only" id="page-content" />
