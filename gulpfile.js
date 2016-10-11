@@ -18,14 +18,12 @@ var PROJECT_ROOT = __dirname;
 var PROJECT_PATH = {
     bower: PROJECT_ROOT + '/static/vendor',
     css: PROJECT_ROOT + '/static/css',
-    docs: PROJECT_ROOT + '/static/docs',
     fonts: PROJECT_ROOT + '/static/fonts',
     html: PROJECT_ROOT + '/templates',
     images: PROJECT_ROOT + '/static/img',
     icons: PROJECT_ROOT + '/private/icons',
     js: PROJECT_ROOT + '/static/js',
-    sass: PROJECT_ROOT + '/private/sass',
-    tests: PROJECT_ROOT + '/tests'
+    sass: PROJECT_ROOT + '/private/sass'
 };
 
 var PROJECT_PATTERNS = {
@@ -82,20 +80,14 @@ gulp.task('build', ['sass']);
  */
 if (process.env.GULP_MODE !== 'production') {
     gulp.task('images', task('images'));
-    gulp.task('docs', task('docs'));
     gulp.task('preprocess', ['sass', 'images', 'docs']);
     gulp.task('icons', task('icons'));
 
     gulp.task('browser', task('browser'));
 
-    gulp.task('tests:lint', ['lint:javascript']);
-    gulp.task('tests:unit', task('tests/unit'));
-    gulp.task('tests:watch', ['tests:lint'], task('tests/watch'));
-    gulp.task('tests', ['tests:unit', 'tests:integration', 'tests:lint']);
-
+    // ???
     webdriverUpdate = require('gulp-protractor').webdriver_update;
     gulp.task('tests:webdriver', webdriverUpdate);
-    gulp.task('tests:integration', ['tests:webdriver'], task('tests/integration'));
 }
 
 gulp.task('watch', function () {
