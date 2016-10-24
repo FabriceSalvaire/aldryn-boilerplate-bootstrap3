@@ -96,7 +96,14 @@
                 </ul>
             {% endrender_model_block %}
             <div class="col-sm-16">
-                <p>Copyright © 2016 fabrice-salvaire.fr</p>
+                <p>Copyright © 2016 fabrice-salvaire.fr /
+		    {% if LANGUAGE_CODE == "en" %}
+			<a href="/legal-notice">Legal Notice</a>
+		    {% endif %}
+		    {% if LANGUAGE_CODE == "fr" %}
+			<a href="/mentions-legales">Mentions Légales</a>
+		    {% endif %}
+		</p>
             </div>
         </div>
     </footer>
