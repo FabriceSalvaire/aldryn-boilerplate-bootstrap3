@@ -16,7 +16,8 @@
                 <h1 class="navbar-brand">
                     <a href="{% url "pages-root" %}">
                         <span class="sr-only">{{ request.site.name }}</span>
-                        <img src="{% static "img/logo.svg" %}" alt="{{ request.site.name }}" height="35" />
+                        {# <img class="brand-logo" src="{% static "img/logo.svg" %}" alt="{{ request.site.name }}" height="35" /> #}
+			<img class="brand-logo" src="{% static "img/logo-home-page.svg" %}" alt="{{ request.site.name }}" height="50" />
                     </a>
                 </h1>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".js-navbar-header">
@@ -95,7 +96,7 @@
                 </ul>
             {% endrender_model_block %}
             <div class="col-sm-16">
-                <p>CopyRight © 2016 Bleausard.fr</p>
+                <p>Copyright © 2016 fabrice-salvaire.fr</p>
             </div>
         </div>
     </footer>
