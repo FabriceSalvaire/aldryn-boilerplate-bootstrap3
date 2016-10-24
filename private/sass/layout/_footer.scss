@@ -8,6 +8,7 @@
 footer {
     @include rised-component();
     padding: 2*$padding-large-vertical 0;
+    margin-top: $padding-large-vertical;
     background: $navbar-inverse-bg;
     color: white; // $navbar-inverse-color
 
