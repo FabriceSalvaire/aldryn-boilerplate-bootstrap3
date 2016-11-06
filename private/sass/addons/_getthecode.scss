@@ -1,0 +1,34 @@
+// #############################################################################
+// Get The code
+
+.getthecode {
+    & > .getthecode-header {
+	padding: $padding-base-vertical $padding-large-horizontal $padding-base-vertical $padding-large-horizontal;
+	color: $pre-color;
+	background-color: $pre-bg;
+	border: 1px solid $pre-border-color;
+	border-bottom-width: 0;
+	border-radius: $border-radius-base $border-radius-base 0 0;
+
+	a.getthecode-filename {
+	    &:before {
+		@include fa-icon();
+		content: $fa-var-download;
+	    }
+	}
+    }
+
+    pre {
+	display: block;
+	padding: (($line-height-computed - 1) / 2);
+	margin: 0 0 ($line-height-computed / 2);
+	font-size: ($font-size-base - 1); // 14px to 13px
+	line-height: $line-height-base;
+	word-break: break-all;
+	word-wrap: break-word;
+	color: $pre-color;
+	background-color: $pre-bg;
+	border: 1px solid $pre-border-color;
+	border-radius: 0 0 $border-radius-base $border-radius-base;
+    }
+}
