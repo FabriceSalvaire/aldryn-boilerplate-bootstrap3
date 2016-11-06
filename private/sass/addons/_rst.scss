@@ -7,4 +7,28 @@
 	float: right;
 	// text-align: right;
     }
+
+    img.align-center {
+	display: block;
+	margin: auto;
+    }
+
+    .warning {
+	@extend .alert;
+	@extend .alert-warning;
+    }
+
+    .system-message {
+    	@extend .alert;
+    	@extend .alert-warning;
+    	display: none;
+    }
+}
+
+html.cms-structure-mode-content {
+    .system-message {
+	@extend .alert;
+	@extend .alert-danger;
+	display: block;
+    }
 }
