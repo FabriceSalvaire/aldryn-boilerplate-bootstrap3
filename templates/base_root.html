@@ -30,7 +30,8 @@
     {{ ALDRYN_SNAKE.render_head }}
 </head>
 <body id="page-top" class="noscript lang-{{ LANGUAGE_CODE }} {% block body_class %}tpl-root{% endblock %}">
-{% include "includes/analytics.html" %}
+{# {% include "includes/analytics.html" %} #}
+{% include 'includes/piwik.html' %}
 {% cms_toolbar %}
 
 {# BODY contents #}{% block extend_root %}{% endblock %}
