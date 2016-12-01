@@ -44,6 +44,7 @@
 {% render_block "js" %}
 {# Extra Foot #}{% block extrafoot %}{% endblock %}
 {{ ALDRYN_SNAKE.render_tail }}
+<!--googleoff: all-->
 <div class="browser-outdated" id="outdated" hidden="hidden">
     <noscript><h3>{% trans "Please enable JavaScript" %}</h3></noscript>
     <h3>{% trans "Your browser is out-of-date!" %}</h3>
@@ -55,5 +56,6 @@
     </p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
+<!--googleon: all-->
 </body>
 </html>
