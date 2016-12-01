@@ -3,9 +3,24 @@
 
 // cf. addons/_rst.scss
 .container {
+    img.left {
+	clear: left;
+	float: left;
+	margin-right: 2*$padding-large-horizontal; // for ul list
+	// text-align: left;
+    }
+
     img.right {
 	clear: right;
 	float: right;
+	// margin-left: $padding-large-horizontal;
 	// text-align: right;
+    }
+}
+
+img {
+    &.rotated-5-acw {
+	padding: $padding-large-horizontal;
+	transform: rotate(-5deg);
     }
 }
