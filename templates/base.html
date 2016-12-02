@@ -8,7 +8,7 @@
 {% block extend_root %}
 {% block header %}
     {# DOCS: http://getbootstrap.com/components/#navbar #}
-    <header class="navbar navbar-head navbar-inverse">
+    <header class="navbar navbar-head navbar-inverse" role="banner">
         <div class="container">
             {# INFO: the logo should be placed first for seo (Search Engine Optimization) reasons #}
             <div class="navbar-header">
@@ -40,7 +40,7 @@
                         <h2 class="sr-only">{% trans "Navigation" %}</h2>
                         {% render_model_block request.current_page "changelist" %}
                             {% with dropdown="true" %}
-                                <ul class="nav navbar-nav">
+                                <ul class="nav navbar-nav" role="menubar">
                                     {% show_menu 0 1 100 100 "includes/menu/navigation.html" %}
                                     <li class="divider" role="presentation"><span class="sr-only">{% trans "Separator" %}</span></li>
                                     {% show_menu_below_id "meta" 0 0 100 100 "includes/menu/navigation.html" %}
