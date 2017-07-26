@@ -17,7 +17,8 @@
                     <a href="{% url "pages-root" %}">
                         <span class="sr-only">{{ request.site.name }}</span>
                         {# <img class="brand-logo" src="{% static "img/logo.svg" %}" alt="{{ request.site.name }}" height="35" /> #}
-			<img class="brand-logo" src="{% static "img/logo-home-page.svg" %}" alt="{{ request.site.name }}" height="50" />
+			{# <img class="brand-logo" src="{% static "img/logo-home-page.svg" %}" alt="{{ request.site.name }} logo" height="50" /> #}
+			<img class="brand-logo" src="{% static "img/logo-home-page-150dpi.png" %}" alt="{{ request.site.name }} logo" height="50" />
                     </a>
                 </h1>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".js-navbar-header">
@@ -55,7 +56,7 @@
 	    {# DOCS: http://getbootstrap.com/components/#breadcrumbs #}
 	    {% block breadcrumb %}
 		{% if not request.current_page.is_home %}
-		    <nav class="navbar-breadcrumb" role="navigation">{# .navbar #}
+		    <nav class="navbar-breadcrumb" role="navigation">{# .navbar visible-sm-block visible-md-block visible-lg-block #}
 			<h3 class="sr-only">{% trans "You are here" %}</h3>
 			<div class="container">
 			    <ol class="breadcrumb">
