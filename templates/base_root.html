@@ -12,9 +12,9 @@
     {% block meta_tags %}{# https://support.google.com/webmasters/answer/79812?hl=fr #}
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta name="description" content="{% spaceless %}{# up to 160 characters #}
-	    {% block meta_description %}
-                {% page_attribute meta_description %}
-	    {% endblock %}
+		    {% block meta_description %}
+                    {% page_attribute meta_description %}
+		    {% endblock %}
         {% endspaceless %}">
 	<meta name="author" content="{{ settings.author }}">
 	{# <meta name="robots" content="..., ..." /> #}
@@ -46,11 +46,12 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% render_block "css" %}
     <!--[if lt IE 9]>
-    <script src="{% static 'js/libs/html5shiv.min.js' %}"></script>
-    <script src="{% static 'js/libs/respond.min.js' %}"></script>
+	<script src="{% static 'js/libs/html5shiv.min.js' %}"></script>
+	<script src="{% static 'js/libs/respond.min.js' %}"></script>
     <![endif]-->
     {% block extrahead %}{% endblock %}
     {{ ALDRYN_SNAKE.render_head }}
+    {% include 'includes/cookieconsent.html' %}
 </head>
 <body id="page-top" class="noscript lang-{{ LANGUAGE_CODE }} {% block body_class %}tpl-root{% endblock %}" role="document">
 {# {% include "includes/analytics.html" %} #}
