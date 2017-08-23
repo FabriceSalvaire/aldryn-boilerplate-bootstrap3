@@ -18,7 +18,7 @@
                         <span class="sr-only">{{ request.site.name }}</span>
                         {# <img class="brand-logo" src="{% static "img/logo.svg" %}" alt="{{ request.site.name }}" height="35" /> #}
 			{# <img class="brand-logo" src="{% static "img/logo-home-page.svg" %}" alt="{{ request.site.name }} logo" height="50" /> #}
-			<img class="brand-logo" src="{% static "img/logo-home-page-150dpi.png" %}" alt="{{ request.site.name }} logo" height="50" />
+			<img class="brand-logo" src="{% static settings.logo %}" alt="{{ request.site.name }} logo" height="50" />
                     </a>
                 </h1>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".js-navbar-header">
@@ -97,7 +97,7 @@
                 </ul>
             {% endrender_model_block %}
             <div class="col-sm-16">
-                <p>Copyright © 2016 fabrice-salvaire.fr /
+                <p>Copyright © {{ settings.copyright_year }} {{ settings.copyright_name }} /
 		    {% if LANGUAGE_CODE == "en" %}
 			<a href="/legal-notice">Legal Notice</a>
 		    {% endif %}

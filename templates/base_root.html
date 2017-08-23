@@ -12,11 +12,11 @@
     {% block meta_tags %}{# https://support.google.com/webmasters/answer/79812?hl=fr #}
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta name="description" content="{% spaceless %}{# up to 160 characters #}
-            {% block meta_description %}
+	    {% block meta_description %}
                 {% page_attribute meta_description %}
-            {% endblock %}
+	    {% endblock %}
         {% endspaceless %}">
-	<meta name="author" content="Fabrice Salvaire">
+	<meta name="author" content="{{ settings.author }}">
 	{# <meta name="robots" content="..., ..." /> #}
 	{# <meta name="googlebot" content="..., ..." /> #}
     {% endblock meta_tags %}
@@ -26,9 +26,9 @@
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="{% page_attribute page_title %}" />
 	<meta property="og:description" content="{% page_attribute meta_description %}" />
-	<meta property="og:url" content="https://www.fabrice-salvaire.fr/" />
+	<meta property="og:url" content="{{ settings.site_url }}" />
 	<meta property="og:site_name" content="{{ request.site.name }}" />
-	<meta property="og:image" content="https://fabrice-salvaire.fr/static/img/logo-home-page-blue-150dpi.png" />
+	<meta property="og:image" content="{{ settings.logo_url }}" />
 	<meta property="og:image:width" content="272" />
 	<meta property="og:image:height" content="30" />
     {% endblock opengraph %}
@@ -36,9 +36,9 @@
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:description" content="{% page_attribute meta_description %}" />
 	<meta name="twitter:title" content="{% page_attribute page_title %}" />
-	<meta name="twitter:site" content="@FabriceSalvaire" />
-	<meta name="twitter:image" content="https://fabrice-salvaire.fr/static/img/logo-home-page-blue-150dpi.png" />
-	<meta name="twitter:creator" content="@FabriceSalvaire" />
+	<meta name="twitter:site" content="{{ settings.twitter_id }}" />
+	<meta name="twitter:image" content="{{ settings.logo_url }}" />
+	<meta name="twitter:creator" content="{{ settings.twitter_id }}" />
     {% endblock twitter-card %}
     <link rel="apple-touch-icon" href="{% static 'favicon.png' %}">
     <link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
