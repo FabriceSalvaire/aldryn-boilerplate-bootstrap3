@@ -56,6 +56,8 @@ $breadcrumb-li-colour: lighten($breadcrumb-li-bg-colour, 70%);
 	}
        */
 
+	// @media (min-width: $screen-md-min) {
+	// Fixme: when the window is very small, > is above the current li
 	ol.breadcrumb {
 	    margin: 0;
 	    padding: 0;
@@ -139,6 +141,7 @@ $breadcrumb-li-colour: lighten($breadcrumb-li-bg-colour, 70%);
 	    }
 	}
     }
+// }
 }
 
 .navbar-brand {
