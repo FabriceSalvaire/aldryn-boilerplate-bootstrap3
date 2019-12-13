@@ -9,7 +9,7 @@ var gulpif = require('gulp-if');
 var header = require('gulp-header');
 
 module.exports = function (gulp, opts) {
-    return function () {
+    return async function () {
         gulp.src(opts.PROJECT_PATTERNS.sass)
             // sourcemaps can be activated through `gulp sass --debug´
             .pipe(gulpif(opts.DEBUG, sourcemaps.init()))

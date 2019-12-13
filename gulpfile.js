@@ -4,6 +4,13 @@
  * http://github.com/aldryn/aldryn-boilerplate-bootstrap3
  */
 
+/*
+ * Gulp Task Manager settings
+ *
+ * Documentation https://gulpjs.com
+ * https://www.liquidlight.co.uk/blog/how-do-i-update-to-gulp-4
+ */
+
 'use strict';
 
 // #############################################################################
@@ -18,12 +25,12 @@ var PROJECT_ROOT = __dirname;
 var PROJECT_PATH = {
     bower: PROJECT_ROOT + '/static/vendor',
     css: PROJECT_ROOT + '/static/css',
-    fonts: PROJECT_ROOT + '/static/fonts',
     html: PROJECT_ROOT + '/templates',
     images: PROJECT_ROOT + '/static/img',
-    icons: PROJECT_ROOT + '/private/icons',
     js: PROJECT_ROOT + '/static/js',
-    sass: PROJECT_ROOT + '/private/sass'
+    sass: PROJECT_ROOT + '/private/sass',
+    fonts: PROJECT_ROOT + '/static/fonts', // Doesn't exists !!!
+    icons: PROJECT_ROOT + '/private/icons', // Doesn't exists !!!
 };
 
 var PROJECT_PATTERNS = {
@@ -67,11 +74,11 @@ function task (id) {
     });
 }
 
-gulp.task('bower', task('bower'));
-gulp.task('lint:javascript', task('lint/javascript'));
-gulp.task('lint', ['lint:javascript']);
+// gulp.task('bower', task('bower'));
+// gulp.task('lint:javascript', gulp.series('lint/javascript'));
+// gulp.task('lint', gulp.series('lint:javascript'));
 gulp.task('sass', task('sass'));
-gulp.task('build', ['sass']);
+gulp.task('build', gulp.series('sass'));
 
 /**
  * GULP_MODE === 'production' means we have a limited
@@ -80,7 +87,7 @@ gulp.task('build', ['sass']);
  */
 if (process.env.GULP_MODE !== 'production') {
     gulp.task('images', task('images'));
-    gulp.task('preprocess', ['sass', 'images', 'docs']);
+    gulp.task('preprocess', gulp.series('sass', 'images')); // , 'docs'
     gulp.task('icons', task('icons'));
 
     gulp.task('browser', task('browser'));
@@ -95,4 +102,6 @@ gulp.task('watch', function () {
     gulp.watch(PROJECT_PATTERNS.js, ['lint']);
 });
 
-gulp.task('default', ['bower', 'sass', 'lint', 'watch']);
+//gulp.task('default', ['bower', 'sass', 'lint', 'watch']);
+// removed bower !!!
+gulp.task('default', gulp.series('sass', 'watch'));

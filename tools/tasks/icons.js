@@ -1,3 +1,5 @@
+// Purpose ???
+
 'use strict';
 
 var gutil = require('gulp-util');
@@ -6,6 +8,7 @@ var iconfontCss = require('gulp-iconfont-css');
 
 module.exports = function (gulp, opts) {
     return function () {
+        // /private/icons Doesn't exists !!!
         gulp.src(opts.PROJECT_PATH.icons + '/**/*.svg')
             .pipe(iconfontCss({
                 fontName: 'iconfont',

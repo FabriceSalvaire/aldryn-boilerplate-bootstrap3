@@ -2,7 +2,7 @@
     "name": "bleausard_cms_boilerplate",
     "private": true,
     "dependencies": {
-        "bootstrap-sass-official": "3.3.7",
+        "bootstrap-sass-official": "3.4.1",
         "class.js": "1.0.0",
         "fontawesome": "4.6.3",
         "html5shiv": "3.7.3",
