@@ -3,19 +3,17 @@
  * Licensed under BSD
  * http://github.com/aldryn/aldryn-boilerplate-bootstrap3
  */
-// istanbul ignore next
+
 'use strict';
 
 // #############################################################################
 // NAMESPACES
-/**
- * @module Cl
- */
 
 var Cl = window.Cl || {};
 
 // #############################################################################
 // UTILS
+
 (function ($) {
     /**
      * Contains various helpers, feel free to extend and adapt
