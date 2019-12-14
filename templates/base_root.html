@@ -45,12 +45,7 @@
     <!--[if IE]><link rel="shortcut icon" href="{% static 'favicon.ico' %}"><![endif]-->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% render_block "css" %}
-    <!--[if lt IE 9]>
-	<script src="{% static 'js/libs/html5shiv.min.js' %}"></script>
-	<script src="{% static 'js/libs/respond.min.js' %}"></script>
-    <![endif]-->
     {% block extrahead %}{% endblock %}
-    {{ ALDRYN_SNAKE.render_head }}
     {% include 'includes/cookieconsent.html' %}
 </head>
 <body id="page-top" class="noscript lang-{{ LANGUAGE_CODE }} {% block body_class %}tpl-root{% endblock %}" role="document">
@@ -63,12 +58,12 @@
 <script src="{% static 'js/libs/jquery.min.js' %}"></script>
 <script src="{% static 'js/libs/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/libs/class.min.js' %}"></script>
-<script src="{% static 'js/libs/outdatedBrowser.min.js' %}"></script>
+<script src="{% static 'js/libs/outdatedbrowser.min.js' %}"></script>
 <script src="{% static 'js/addons/cl.utils.js' %}"></script>
 <script src="{% static 'js/base.js' %}"></script>
 {% render_block "js" %}
 {# Extra Foot #}{% block extrafoot %}{% endblock %}
-{{ ALDRYN_SNAKE.render_tail }}
+{% block outdated_browser %}
 <!--googleoff: all-->
 <div class="browser-outdated" id="outdated" hidden="hidden">
     <noscript><h3>{% trans "Please enable JavaScript" %}</h3></noscript>
@@ -82,5 +77,6 @@
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
 <!--googleon: all-->
+{% endblock %}
 </body>
 </html>
