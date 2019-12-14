@@ -17,19 +17,19 @@
         <ul class="pager">
             {% if prev_article %}
                 <li class="previous"><a href="{{ prev_article.get_absolute_url }}">
-		    <i class="fa fa-chevron-left" aria-hidden="true"></i> {% trans "Previous Article" %}</a></li>
+		    <i class="fas fa-chevron-left" aria-hidden="true"></i> {% trans "Previous Article" %}</a></li>
             {% else %}
                 <li class="previous"><span class="text-muted">
-		    <i class="fa fa-chevron-left" aria-hidden="true"></i> {% trans "Previous Article" %}</span></li>
+		    <i class="fas fa-chevron-left" aria-hidden="true"></i> {% trans "Previous Article" %}</span></li>
             {% endif %}
             <li><span class="pager-back"><a href="{% namespace_url "article-list" %}">
-		<i class="fa fa-arrow-up" aria-hidden="true"></i> {% trans "Back to Overview" %}</a></span></li>
+		<i class="fas fa-arrow-up" aria-hidden="true"></i> {% trans "Back to Overview" %}</a></span></li>
             {% if next_article %}
                 <li class="next"><a href="{{ next_article.get_absolute_url }}">
-		    {% trans "Next Article" %} <i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+		    {% trans "Next Article" %} <i class="fas fa-chevron-right" aria-hidden="true"></i></a></li>
             {% else %}
                 <li class="next"><span class="text-muted">
-		    {% trans "Next Article" %} <i class="fa fa-chevron-right" aria-hidden="true"></i></span></li>
+		    {% trans "Next Article" %} <i class="fas fa-chevron-right" aria-hidden="true"></i></span></li>
             {% endif %}
         </ul>
     </div>
