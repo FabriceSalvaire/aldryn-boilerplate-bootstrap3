@@ -1,20 +1,23 @@
-/*
- * All independent files are placed within this folder. This implies that
- * the order of inclusion does not matter within /sass/libs/_all.scss.
- *
- * Hint
- * Libraries are, in their very core, plug-and-playable. The main
- * difference between libraries and other plug-and-play components is,
- * that if a library is removed, things will break.
- */
-
 // #############################################################################
-// AUTOIMPORTS
-
+//
+// All independent files are placed within this folder. This implies that
+// the order of inclusion does not matter within /sass/libs/_all.scss.
+//
+// Hint
+// Libraries are, in their very core, plug-and-playable. The main
+// difference between libraries and other plug-and-play components is,
+// that if a library is removed, things will break.
+//
 // this folder is for additional independent libraries such as 960gs or
 // twitter bootstrap these libraries do not depend on other elements
+//
+// #############################################################################
 
 @import "bootstrap/bootstrap";
-@import "fontawesome/font-awesome";
-@import "select2";
+
+@import "fontawesome/fontawesome";
+@import "fontawesome/solid";
+
+@import "select2"; // select2 plugin without bootstrap
+
 // @import "iconfont"; uncomment to enable custom icons
