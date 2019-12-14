@@ -1,5 +1,6 @@
 *~
 
+.yarnclean
 bower_components/
 node_modules/
 static/css/
@@ -8,7 +9,8 @@ static/vendor
 yarn-error.log
 yarn.lock
 
-__DEPRECATED__/package-OLD.json~
+__DEPRECATED__/package-OLD.json
+__DEPRECATED__/static/
 __TRASH__/
 du.log
 from-django-cms.org/
