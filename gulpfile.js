@@ -162,8 +162,8 @@ function lint_javascript_task(cb) {
 
 // Watch Task
 function watch_task(cb) {
-    gulp.watch(PROJECT_PATTERNS.sass, [gulp_sass]);
-    gulp.watch(PROJECT_PATTERNS.js, ['lint']);
+    gulp.watch(PROJECT_PATTERNS.sass, gulp.series(sass_task));
+    // gulp.watch(PROJECT_PATTERNS.js, lint_javascript_task);
     cb();
 }
 
