@@ -1,0 +1,95 @@
+{% block header %}
+{# Doc: http://getbootstrap.com/components/#navbar #}
+<a class="skippy sr-only sr-only-focusable" href="#page-content">
+    <span class="skippy-text">{% trans "Skip to main content" %}</span>
+</a>
+
+<header class="navbar navbar-expand-lg navbar-dark bg-dark">
+    {# Info: the logo should be placed first for seo reasons #}
+    <a class="navbar-brand"  href="{% url "pages-root" %}">
+	{# <img class="brand-logo" src="{% static "img/logo.svg" %}" alt="{{ request.site.name }}" height="35" /> #}
+	{# <img class="brand-logo" src="{% static "img/logo-home-page.svg" %}" alt="{{ request.site.name }} logo" height="50" /> #}
+	<img class="brand-logo" src="{% static settings.logo %}" alt="{{ request.site.name }} logo" height="50" />
+    </a>
+
+    {# Info: ensure the anchor names are callable #}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#page-navigation" aria-controls="page-navigation" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="page-navigation">
+	{% block navbar %}
+	{# http://docs.django-cms.org/en/latest/how_to/frontend_models.html#page-menu-edit #}
+	{# to enable: double-click to edit #}
+	{% render_model_block request.current_page "changelist" %}
+	{% with dropdown="true" %}
+	<ul class="navbar-nav ml-auto" role="menubar">
+	    {# http://docs.django-cms.org/en/latest/reference/navigation.html#show-menu #}
+	    {% show_menu 0 1 100 100 "includes/menu/navigation.html" %}
+	    {# http://docs.django-cms.org/en/latest/reference/navigation.html#show-menu-below-id #}
+	    {# {% show_menu_below_id "meta" 0 0 100 100 "includes/menu/navigation.html" %} #}
+	    {# http://docs.django-cms.org/en/latest/reference/templatetags.html#language-chooser #}
+	    {% language_chooser "includes/menu/langnav.html" "native" %}
+	</ul>
+	{% endwith %}
+        {% endrender_model_block %}
+	{% endblock navbar %}
+    </div>
+</header>
+{% endblock header %}
+
+
+<header class="navbar navbar-expand-lg navbar-dark bg-dark py-0">
+    <div class="container">{# to center navbar on page #}
+	<div class="d-flex flex-column flex-fill">
+	    <div class="d-flex flex-row">
+		{# Info: the logo should be placed first for seo reasons #}
+		<a class="navbar-brand"  href="{% url "pages-root" %}">
+		    {# <img class="brand-logo" src="{% static "img/logo.svg" %}" alt="{{ request.site.name }}" height="35" /> #}
+		    {# <img class="brand-logo" src="{% static "img/logo-home-page.svg" %}" alt="{{ request.site.name }} logo" height="50" /> #}
+		    <img class="brand-logo" src="{% static settings.logo %}" alt="{{ request.site.name }} logo" height="50" />
+		</a>
+
+		{# Info: ensure the anchor names are callable #}
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#page-navigation" aria-controls="page-navigation" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="page-navigation">
+		    {% block navbar %}
+		    {# http://docs.django-cms.org/en/latest/how_to/frontend_models.html#page-menu-edit #}
+		    {# to enable: double-click to edit #}
+		    {% render_model_block request.current_page "changelist" %}
+		    {% with dropdown="true" %}
+		    <ul class="navbar-nav ml-auto" role="menubar">
+			{# http://docs.django-cms.org/en/latest/reference/navigation.html#show-menu #}
+			{% show_menu 0 1 100 100 "includes/menu/navigation.html" %}
+			{# http://docs.django-cms.org/en/latest/reference/navigation.html#show-menu-below-id #}
+			{# {% show_menu_below_id "meta" 0 0 100 100 "includes/menu/navigation.html" %} #}
+			{# http://docs.django-cms.org/en/latest/reference/templatetags.html#language-chooser #}
+			{% language_chooser "includes/menu/langnav.html" "native" %}
+		    </ul>
+		    {% endwith %}
+                    {% endrender_model_block %}
+		    {% endblock navbar %}
+		</div>
+	    </div>
+
+	    {# doc: https://getbootstrap.com/docs/4.4/components/breadcrumb #}
+	    {% block breadcrumb %}
+	    {% if not request.current_page.is_home %}
+	    <div class="d-none d-lg-block" >
+		<nav aria-label="breadcrumb">
+		    <h3 class="sr-only">{% trans "You are here" %}</h3>
+		    <ol class="breadcrumb">
+			{% block extend_breadcrumb %}
+			{% show_breadcrumb 0 "includes/menu/breadcrumb.html" %}
+			{% endblock extend_breadcrumb %}
+		    </ol>
+		</nav>
+	    </div>
+	    {% endif %}
+	    {% endblock breadcrumb %}
+	</div>
+    </div>
+</header>

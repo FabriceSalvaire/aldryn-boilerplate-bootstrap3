@@ -1,5 +1,6 @@
 {# -*- engine: django -*- #}
-{% extends "aldryn_newsblog/two_column.html" %}
+{# Render blog article list #}
+{% extends "aldryn_newsblog/base_templates/two_column.html" %}
 {% load i18n cms_tags %}
 
 {% block newsblog_content %}
@@ -10,13 +11,13 @@
 		<hr>
 	    {% endif %}
         {% empty %}
-            <p class="well">{% trans "No items available" %}</p>
+            <p class="card">{% trans "No items available" %}</p>
         {% endfor %}
     </div>
 {% endblock %}
 
 {% block newsblog_footer %}
-    <div class="aldryn-newsblog-pagination">
+    <div class="d-flex justify-content-center aldryn-newsblog-pagination">
         {% include "aldryn_newsblog/includes/pagination.html" %}
     </div>
 {% endblock %}

@@ -1,9 +1,8 @@
 {# -*- engine: django -*- #}
 {% for crumb in ancestors %}
     {% if not forloop.last %}
-        <li class="child"><a href="{{ crumb.get_absolute_url }}">{{ crumb.get_menu_title }}</a></li>
+        <li class="breadcrumb-item"><a href="{{ crumb.get_absolute_url }}">{{ crumb.get_menu_title }}</a></li>
     {% else %}
-        {# <li class="child active"><a href="" >{{ crumb.get_menu_title }}</a></li> #}
-	<li class="child active">{{ crumb.get_menu_title }}</li>
+	<li class="breadcrumb-item active" aria-current="page">{{ crumb.get_menu_title }}</li>
     {% endif %}
 {% endfor %}

@@ -1,19 +1,27 @@
 {# -*- engine: django -*- #}
+{# User to render menu #}
 {% load i18n menu_tags cache %}
-{# DOCS: http://django-cms.readthedocs.org/en/latest/advanced/templatetags.html#show-menu-examples #}
+{# Doc: http://django-cms.readthedocs.org/en/latest/advanced/templatetags.html#show-menu-examples #}
 
 {% for child in children %}
-<li class="child{% if child.ancestor %} ancestor{% endif %}{% if child.selected %} active{% endif %}{% if child.children and dropdown %} children dropdown{% endif %}{% if forloop.first %} first{% endif %}{% if forloop.last %} last{% endif %}" role="menuitem">
-    <a href="{{ child.get_absolute_url }}"{% if child.children and not child.parent and dropdown %} class="dropdown-toggle" data-toggle="dropdown"{% endif %}>
-        <span>
-            {{ child.get_menu_title }}
-            {% if child.children and not child.parent and dropdown %}<span class="caret"></span>{% endif %}
-        </span>
-    </a>
-    {% if child.children %}
-        <ul{% if child.children and not child.parent and dropdown %} class="dropdown-menu" role="menu"{% endif %}>
-            {% show_menu from_level to_level extra_inactive extra_active template "" "" child %}
-        </ul>
-    {% endif %}
-</li>
+    <li class="nav-item {% if child.selected %} active{% endif %} {% if child.children and dropdown %}dropdown{% endif %}">
+	<a href="{{ child.get_absolute_url }}"
+	    {% if child.children and not child.parent and dropdown %}
+	    class="nav-link dropdown-toggle" id="navbar_dropdown_..." role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+	    {% else %}
+	    class="nav-link"
+	    {% endif %}>
+            <span>
+		{{ child.get_menu_title }}
+            </span>
+	</a>
+	{% comment %}
+	{% if child.children and not child.parent and dropdown %}
+	    <div class="dropdown-menu" aria-labelledby="navbar_dropdown_...">
+		{% show_menu from_level to_level extra_inactive extra_active template "" "" child %}
+		<a class="dropdown-item" href="...">...</a>
+	    </div>
+	{% endif %}
+	{% endcomment %}
+    </li>
 {% endfor %}

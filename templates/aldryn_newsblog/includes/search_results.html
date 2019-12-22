@@ -1,4 +1,5 @@
 {# -*- engine: django -*- #}
+{# Render search results #}
 {% load i18n apphooks_config_tags %}
 
 <ul class="results-list list-unstyled">
@@ -17,9 +18,13 @@
         </li>
     {% empty %}
         {% if query %}
-            <p class="well">{% blocktrans with query=query %}No articles found{% endblocktrans %}</p>
+	    <div class="alert alert-warning" role="alert">
+		{% blocktrans with query=query %}No articles found{% endblocktrans %}
+	    </div>
         {% else %}
-            <p class="well">{% trans "Enter a query above" %}</p>
+	    <div class="alert alert-warning" role="alert">
+		{% trans "Enter a query above" %}
+	    </div>
         {% endif %}
     {% endfor %}
 </ul>

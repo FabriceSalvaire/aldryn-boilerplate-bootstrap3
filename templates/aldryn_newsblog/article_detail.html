@@ -1,5 +1,6 @@
 {# -*- engine: django -*- #}
-{% extends "aldryn_newsblog/fullwidth.html" %}
+{# Render blog article #}
+{% extends "aldryn_newsblog/base_templates/fullwidth.html" %}
 {% load i18n cms_tags apphooks_config_tags %}
 
 {% block title %}{{ article.title }} - {{ block.super }}{% endblock %}
@@ -14,24 +15,35 @@
 
 {% block newsblog_footer %}
     <div class="aldryn-newsblog-pager">
-        <ul class="pager">
-            {% if prev_article %}
-                <li class="previous"><a href="{{ prev_article.get_absolute_url }}">
-		    <i class="fas fa-chevron-left" aria-hidden="true"></i> {% trans "Previous Article" %}</a></li>
-            {% else %}
-                <li class="previous"><span class="text-muted">
-		    <i class="fas fa-chevron-left" aria-hidden="true"></i> {% trans "Previous Article" %}</span></li>
-            {% endif %}
-            <li><span class="pager-back"><a href="{% namespace_url "article-list" %}">
-		<i class="fas fa-arrow-up" aria-hidden="true"></i> {% trans "Back to Overview" %}</a></span></li>
-            {% if next_article %}
-                <li class="next"><a href="{{ next_article.get_absolute_url }}">
-		    {% trans "Next Article" %} <i class="fas fa-chevron-right" aria-hidden="true"></i></a></li>
-            {% else %}
-                <li class="next"><span class="text-muted">
-		    {% trans "Next Article" %} <i class="fas fa-chevron-right" aria-hidden="true"></i></span></li>
-            {% endif %}
-        </ul>
+	<div class="d-flex justify-content-between">
+	    <div>
+		{% if prev_article %}
+		    <a href="{{ prev_article.get_absolute_url }}">
+			<i class="fas fa-chevron-left" aria-hidden="true"></i> {% trans "Previous Article" %}
+		    </a>
+		{% else %}
+                    <span class="text-muted">
+			<i class="fas fa-chevron-left" aria-hidden="true"></i> {% trans "Previous Article" %}
+		    </span>
+		{% endif %}
+	    </div>
+	    <div>
+		<a href="{% namespace_url "article-list" %}">
+		    <i class="fas fa-arrow-up" aria-hidden="true"></i> {% trans "Back to Overview" %}
+		</a>
+	    </div>
+	    <div>
+		{% if next_article %}
+                    <a href="{{ next_article.get_absolute_url }}">
+			{% trans "Next Article" %} <i class="fas fa-chevron-right" aria-hidden="true"></i>
+		    </a>
+		{% else %}
+                    <span class="text-muted">
+			{% trans "Next Article" %} <i class="fas fa-chevron-right" aria-hidden="true"></i>
+		    </span>
+		{% endif %}
+	    </div>
+	</div>
     </div>
     {% static_placeholder "newsblog_comments" %}
 {% endblock %}

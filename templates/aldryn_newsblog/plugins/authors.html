@@ -8,7 +8,7 @@
                 {% include "aldryn_newsblog/includes/author.html" with author_view="true" namespace=instance.app_config.namespace %}
             </li>
         {% empty %}
-            <li class="well">{% trans "No items available" %}</li>
+            <li class="card">{% trans "No items available" %}</li>
         {% endfor %}
     </ul>
 </div>

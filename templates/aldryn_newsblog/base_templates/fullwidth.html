@@ -1,0 +1,16 @@
+{# -*- engine: django -*- #}
+{# Base template used by: article_detail #}
+{% extends "aldryn_newsblog/base_templates/base.html" %}
+{% load i18n cms_tags %}
+
+{% block content %}
+    <div class="container">
+        <div class="aldryn aldryn-newsblog">
+            {% block newsblog_content %}{% endblock %}
+        </div>
+
+        <div class="aldryn aldryn-newsblog">
+            {% block newsblog_footer %}{% endblock %}
+        </div>
+    </div>
+{% endblock content %}

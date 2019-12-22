@@ -1,0 +1,18 @@
+{# -*- engine: django -*- #}
+{# Used to render language menu #}
+{% load i18n menu_tags %}
+{% get_language_info for LANGUAGE_CODE as lang %}
+{# Doc: https://docs.djangoproject.com/en/1.5/topics/i18n/translation/#other-tags #}
+
+{% if languages|length > 1 %}
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="{% page_language_url lang.code %}" id="navbar_lang_dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ lang.code|language_name_local|title }}</a>
+        <div class="dropdown-menu" aria-labelledby="navbar_lang_dropdown">
+            {% for language in languages %}
+                {% if not language.0 == current_language %}
+                    <a class="dropdown-item" href="{% page_language_url language.0 %}">{{ language.0|language_name_local|title }}</a>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}

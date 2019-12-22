@@ -1,11 +1,12 @@
 {# -*- engine: django -*- #}
-{% extends "aldryn_newsblog/base.html" %}
+{# Render blog using two column used by: article_list #}
+{% extends "aldryn_newsblog/base_templates/base.html" %}
 {% load i18n cms_tags %}
 
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-md-17">
+            <div class="col-9">
                 {% if view.show_header %}
                     {% static_placeholder "newsblog_feature" %}
                 {% endif %}
@@ -13,7 +14,7 @@
                     {% block newsblog_content %}{% endblock %}
                 </div>
             </div>
-            <div class="col-md-7 aldryn-newsblog aldryn-newsblog-sidebar">
+            <div class="col-3 aldryn-newsblog aldryn-newsblog-sidebar">
                 {% static_placeholder "newsblog_sidebar" %}
                 {% block newsblog_sidebar %}{% endblock %}
             </div>
