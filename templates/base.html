@@ -7,15 +7,18 @@
 {# no indent for better readability on extend_root #}
 {% block extend_root %}
 
+    {# -> Page Header #}
     {% block header %}
 	{# Doc: http://getbootstrap.com/components/#navbar #}
+	{# -> Skip link for screen reader #}
 	<a class="skippy sr-only sr-only-focusable" href="#page-content">
 	    <span class="skippy-text">{% trans "Skip to main content" %}</span>
 	</a>
 
 	<header>
-	    <nav class="navbar navbar-expand-lg navbar-main navbar-dark bg-dark">
-		<div class="container">{# to center navbar on page #}
+	    {# -> Top Navigation Bar #}
+	    <nav id="top-navbar" class="navbar">{# navbar is required by js code #}
+		<div class="container">{# to center the navbar on page #}
 		    {# Info: the logo should be placed first for seo reasons #}
 		    <a class="navbar-brand"  href="{% url "pages-root" %}">
 			{# <img class="brand-logo" src="{% static "img/logo.svg" %}" alt="{{ request.site.name }}" height="35" /> #}
@@ -43,33 +46,32 @@
 				    {% language_chooser "includes/menu/language_menu.html" "native" %}
 				</ul>
 			    {% endwith %}
-                    {% endrender_model_block %}
+                            {% endrender_model_block %}
 			{% endblock navbar %}
 		    </div>
 		</div>
 	    </nav>
 
+	    {# -> Breadcrumb #}
 	    {# doc: https://getbootstrap.com/docs/4.4/components/breadcrumb #}
 	    {% block breadcrumb %}
 		{% if not request.current_page.is_home %}
-		    <div class="d-none d-lg-block" >
-			<nav class="navbar-breadcrumb" aria-label="breadcrumb">
-			    <div class="container">{# to center navbar on page #}
-				<h3 class="sr-only">{% trans "You are here" %}</h3>
-				<ol class="breadcrumb">
-				    {% block extend_breadcrumb %}
-					{% show_breadcrumb 0 "includes/menu/breadcrumb.html" %}
-				    {% endblock extend_breadcrumb %}
-				</ol>
-			    </div>
-			</nav>
-		    </div>
+		    <nav id="page-breadcrumb" aria-label="breadcrumb">
+			<div class="container">{# to center navbar on page #}
+			    <h3 class="sr-only">{% trans "You are here" %}</h3>
+			    <ol class="breadcrumb">
+				{% block extend_breadcrumb %}
+				    {% show_breadcrumb 0 "includes/menu/breadcrumb.html" %}
+				{% endblock extend_breadcrumb %}
+			    </ol>
+			</div>
+		    </nav>
 		{% endif %}
 	    {% endblock breadcrumb %}
 	</header>
     {% endblock header %}
 
-    {# start: content #}
+    {# -> Page Content #}
     <hr class="sr-only" id="page-content" />
     {% block extend_base %}
 	<div class="container">
@@ -78,33 +80,33 @@
 	    {% block content %}{% placeholder "content" %}{% endblock %}
 	</div>
     {% endblock extend_base %}
-    {# end: content #}
 
+    {# -> Page Footer #}
     {% block footer %}
 	<footer class="footer" role="contentinfo">
             <h1 class="sr-only" id="page-footer">{% trans "Page Footer" %}</h1>
 
-            <div class="container">
+	    <div class="footer-container">
 		{% static_placeholder "footer" %}
 		{# Render a footer menu #}
 		{# Fixme: include compatibility ?, use flex ? #}
 		{% render_model_block request.current_page "changelist" %}{# to enable: double-click to edit #}
-                <ul class="list-inline">
-                    <li class="list-inline-item float-right"><a href="#page-top" data-spy="scroll"><i class="fas fa-arrow-up"></i> {% trans "Back to top" %}</a></li>
-                    {% show_menu_below_id "footer" 0 0 100 100 "includes/menu/navigation.html" %}
+                <ul class="footer-menu">
+		    {% show_menu_below_id "footer" 0 0 100 100 "includes/menu/navigation.html" %}
                 </ul>
-            {% endrender_model_block %}
-            <div class="col-sm-16">{# Fixme: mobile #}
-                <p>Copyright © {{ settings.copyright_year }} {{ settings.copyright_name }} /
-       		    {# Fixme: use page_url #}
-		    {% if LANGUAGE_CODE == "en" %}
-		        <a href="/legal-notice">Legal Notice</a>
-		    {% endif %}
-		    {% if LANGUAGE_CODE == "fr" %}
-		        <a href="/mentions-legales">Mentions Légales</a>
-		    {% endif %}
-		</p>
-            </div>
+                {% endrender_model_block %}
+	    </div>
+
+	    <div class="footer-container">
+		<div id="copyright-notice">
+                    <p>Copyright © {{ settings.copyright_year }} {{ settings.copyright_name }} /
+		        <a href={% page_url "legal-notice" %}>{% page_attribute "page_title" "legal-notice" %}</a>
+		    </p>
+		</div>
+
+		<div id="page-top-link">
+		    <a href="#page-top" data-spy="scroll"><i class="fas fa-arrow-up"></i> {% trans "Back to top" %}</a>
+		</div>
             </div>
 	</footer>
     {% endblock footer %}

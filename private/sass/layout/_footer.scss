@@ -10,3 +10,23 @@ footer {
     @include rised-component();
     @include white_on_dark();
 }
+
+.footer-container {
+    @extend .container;
+    @extend .d-flex;
+
+    #copyright-notice {
+    }
+
+    #page-top-link {
+	@extend .ml-auto;
+    }
+}
+
+@media(max-width: $grid-float-breakpoint) {
+    .footer-container {
+	// @extend .flex-column; // but don't work in media ...
+	flex-direction: column;
+    }
+}
+
