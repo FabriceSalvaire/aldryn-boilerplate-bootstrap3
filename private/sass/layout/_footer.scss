@@ -6,17 +6,7 @@
 // getting to large
 
 footer {
+    @extend .py-3;
     @include rised-component();
-    padding: 2*$padding-large-vertical 0;
-    margin-top: $padding-large-vertical;
-    background: $navbar-inverse-bg;
-    color: white; // $navbar-inverse-color
-
-    a {
-	color: white;
-
-	&:hover {
-	    color: white;
-	}
-    }
+    @include white_on_dark();
 }

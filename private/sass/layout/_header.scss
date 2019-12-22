@@ -6,14 +6,63 @@
 // is getting to large
 
 header {
-    @include rised-component();
     // Add vertical space to the header
-    padding: 2*$padding-large-vertical 0;
+    @extend .mb-3;
+    @extend .pb-3;
+    @include rised-component();
+    @extend .bg-dark;
+}
+
+.navbar-main {
+    @extend .py-0;
+
+    // button menu requires: navbar-dark bg-dark !!!
+    @include white_on_dark();
+
+    text-transform: uppercase;
+    border-radius: 0; // ???
+
+    a.dropdown-item {
+	@extend .text-dark;
+    }
+}
+
+.navbar-brand {
+    // Center vertically the logo and add some horizontal padding when the menu is collapsed
+    // padding: .5rem;
+    // margin: 0;
 }
 
 img.brand-logo {
     // mix-blend-mode: multiply;
 }
+
+@media(min-width: $grid-float-breakpoint) {
+    // Implement horizontal line
+    // Fixme: better ?
+    .navbar-main {
+	.nav-item:not(.dropdown) { // doen't work with dropdown
+	    > a::after {
+		// position: absolute;
+		// left: 0;
+		content: "";
+		display: block;
+		height: 2px;
+		bottom: 3px;
+		background-color: #a1c42c;
+		width: 0;
+		transition: all .2s ease-out;
+	    }
+	    &.active > a::after,
+	    > a:hover::after { // :active::after, :focus::after
+		width: 100%;
+	    }
+	}
+    }
+}
+
+// #############################################################################
+// Breadcrumb
 
 /*
 $breadcrumb-li-bg-colour: #eee;
@@ -42,155 +91,97 @@ $breadcrumb-li-border-colour: lighten($breadcrumb-li-bg-colour-right, 10%);
 $breadcrumb-li-colour: lighten($breadcrumb-li-bg-colour, 70%);
 */
 
-.navbar {
-    text-transform: uppercase;
-    border-radius: 0;
+// For breadcrumb in header
+.navbar-breadcrumb {
+    @extend .py-0;
 
-    // For breadcrumb in header
-    .navbar-breadcrumb {
-	margin-top: $padding-large-vertical;
-
-	/*
+    /*
 	.breadcrumb {
 	    margin-bottom: 0;
 	}
-       */
+   */
 
-	// @media (min-width: $screen-md-min) {
-	// Fixme: when the window is very small, > is above the current li
-	ol.breadcrumb {
-	    margin: 0;
+    // @media (min-width: $screen-md-min) {
+    // Fixme: when the window is very small, > is above the current li
+    ol.breadcrumb {
+	margin: 0;
+	padding: 0;
+
+	// list-style: none;
+
+	background: $breadcrumb-li-bg-colour;
+	// border-width: 1px;
+	// border-style: solid;
+	// border-color: $breadcrumb-li-bg-colour-left #e5e5e5 $breadcrumb-li-border-colour;
+	// border-radius: 5px;
+	// box-shadow: 0 0 2px rgba(0,0,0,.2);
+	overflow: hidden;
+	// width: 100%;
+
+	> li + li::before {
+	    // Reset Boostrap settins
+	    content: normal;
 	    padding: 0;
+	}
 
-	    // list-style: none;
+	li {
+	    float: left;
 
-	    background: $breadcrumb-li-bg-colour;
-	    // border-width: 1px;
-	    // border-style: solid;
-	    // border-color: $breadcrumb-li-bg-colour-left #e5e5e5 $breadcrumb-li-border-colour;
-	    // border-radius: 5px;
-	    // box-shadow: 0 0 2px rgba(0,0,0,.2);
-	    overflow: hidden;
-	    // width: 100%;
-
-	    > li + li::before {
-		// Reset Boostrap settins
-		content: normal;
-		padding: 0;
+	    &.active {
+		padding: $breadcrumb-li-padding-vertical $breadcrumb-li-padding-horizontal $breadcrumb-li-padding-vertical 2*$breadcrumb-li-padding-horizontal;
+		// font-weight: bold;
+		color: darken($breadcrumb-li-colour, 10%);
 	    }
 
-	    li {
+	    a {
+		padding: $breadcrumb-li-padding-vertical $breadcrumb-li-padding-horizontal $breadcrumb-li-padding-vertical 2*$breadcrumb-li-padding-horizontal;
 		float: left;
+		// text-decoration: none;
+		color: $breadcrumb-li-colour;
+		position: relative;
+		// text-shadow: 0 1px 0 rgba(255,255,255,.5);
+		// background-color: $breadcrumb-li-bg-colour-right;
+		background-image: linear-gradient(to right, $breadcrumb-li-bg-colour-left, $breadcrumb-li-bg-colour-right);
 
-		&.active {
-		    padding: $breadcrumb-li-padding-vertical $breadcrumb-li-padding-horizontal $breadcrumb-li-padding-vertical 2*$breadcrumb-li-padding-horizontal;
-		    // font-weight: bold;
-		    color: darken($breadcrumb-li-colour, 10%);
+		color: $breadcrumb-li-colour;
+
+		&::after,
+		&::before {
+		    // Draw a triangle using border (note: border angle is 45°)
+		    content: "";
+		    position: absolute;
+		    top: 50%;
+		    margin-top: -$breadcrumb-triangle-size;
+		    border-top: $breadcrumb-triangle-size solid transparent;
+		    border-bottom: $breadcrumb-triangle-size solid transparent;
+		    border-left: $breadcrumb-li-padding-horizontal solid;
+		    right: -$breadcrumb-li-padding-horizontal;
 		}
 
-		a {
-		    padding: $breadcrumb-li-padding-vertical $breadcrumb-li-padding-horizontal $breadcrumb-li-padding-vertical 2*$breadcrumb-li-padding-horizontal;
-		    float: left;
-		    // text-decoration: none;
-		    color: $breadcrumb-li-colour;
-		    position: relative;
-		    // text-shadow: 0 1px 0 rgba(255,255,255,.5);
-		    // background-color: $breadcrumb-li-bg-colour-right;
-		    background-image: linear-gradient(to right, $breadcrumb-li-bg-colour-left, $breadcrumb-li-bg-colour-right);
+		&::after {
+		    z-index: 2;
+		    border-left-color: $breadcrumb-li-bg-colour-right;
+		}
 
-		    color: $breadcrumb-li-colour;
+		&::before{
+		    border-left-color: $breadcrumb-li-border-colour;
+		    right: - $breadcrumb-li-padding-horizontal - $breadcrumb-wedge-width;
+		    z-index: 1;
+		}
 
-		    &::after,
-		    &::before {
-			// Draw a triangle using border (note: border angle is 45°)
-			content: "";
-			position: absolute;
-			top: 50%;
-			margin-top: -$breadcrumb-triangle-size;
-			border-top: $breadcrumb-triangle-size solid transparent;
-			border-bottom: $breadcrumb-triangle-size solid transparent;
-			border-left: $breadcrumb-li-padding-horizontal solid;
-			right: -$breadcrumb-li-padding-horizontal;
-		    }
+		&:hover {
+		    text-decoration: none;
+		    background: white;
 
 		    &::after {
-			z-index: 2;
-			border-left-color: $breadcrumb-li-bg-colour-right;
-		    }
-
-		    &::before{
-			border-left-color: $breadcrumb-li-border-colour;
-			right: - $breadcrumb-li-padding-horizontal - $breadcrumb-wedge-width;
-			z-index: 1;
-		    }
-
-		    &:hover {
-			text-decoration: none;
-			background: white;
-
-			&::after {
-			    border-left-color: white;
-			}
+			border-left-color: white;
 		    }
 		}
-
-		&:first-child a {
-		    padding-left: 1em;
-		    // border-radius: 5px 0 0 5px;
-		}
 	    }
-	}
-    }
-// }
-}
 
-.navbar-brand {
-    // Center vertically the logo and add some horizontal padding when the menu is collapsed
-    padding: 10px;
-    margin: 0;
-}
-
-@media(min-width: $grid-float-breakpoint) {
-
-    // Overwrite
-    .navbar-inverse {
-	.navbar-nav {
-	    > li > a {
-		color: white;
-
-		&:hover,
-		&:focus {
-		    color: white;
-		}
-	    }
-	    > .active > a {
-		&,
-		&:hover,
-		&:focus {
-		    color: white;
-		}
-	    }
-	}
-    }
-
-    // Implement horizontal line
-    // Fixme: better ?
-    .navbar-main {
-	ul li {
-	    > a::after {
-		// position: absolute;
-		// left: 0;
-		content: "";
-		display: block;
-		height: 2px;
-		bottom: 3px;
-		background-color: #a1c42c;
-		width: 0;
-		transition: all .2s ease-out;
-	    }
-	    &.active > a::after,
-	    > a:hover::after { // :active::after, :focus::after
-		width: 100%;
+	    &:first-child a {
+		padding-left: 1em;
+		// border-radius: 5px 0 0 5px;
 	    }
 	}
     }
