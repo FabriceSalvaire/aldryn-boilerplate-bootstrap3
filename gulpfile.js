@@ -40,6 +40,7 @@ var postcss = require('gulp-postcss');
 var gulp_sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 // var webpack = require('webpack');
+var browser_sync = require('browser-sync').create();
 
 var argv = require('minimist')(process.argv.slice(2));
 
@@ -64,29 +65,27 @@ var PROJECT_PATH = {
 };
 
 var PROJECT_PATTERNS = {
+    html: [
+        PROJECT_PATH.html + '/**/*.{html}'
+    ],
     images: [
         PROJECT_PATH.images + '/**/*',
-        // exclude from preprocessing
-        '!' + PROJECT_PATH.images + '/dummy/*/**'
     ],
     js: [
         'gulpfile.js',
-        './tools/tasks/**/*.js',
         PROJECT_PATH.js + '/**/*.js',
-        PROJECT_PATH.tests + '/**/*.js',
         // exclude from linting
         '!' + PROJECT_PATH.js + '/*.min.js',
         '!' + PROJECT_PATH.js + '/**/*.min.js',
-        '!' + PROJECT_PATH.tests + '/coverage/**/*'
     ],
     sass: [
         PROJECT_PATH.sass + '/**/*.{scss,sass}'
     ]
 };
 
-// var DEFAULT_PORT = 8000;
-// var PORT = parseInt(process.env.PORT, 10) || DEFAULT_PORT;
-// var DEBUG = argv.debug;
+var DEFAULT_PORT = 8000;
+var PORT = parseInt(process.env.PORT, 10) || DEFAULT_PORT;
+var DEBUG = argv.debug;
 
 // #################################################################################################
 // TASKS
@@ -113,7 +112,8 @@ function sass_task(cb) {
                 rebase: false
             })
         )
-        .pipe(header('/* This file generated automatically on server side. All changes would be lost. */ \n\n'))
+        .pipe(header('/* This file was generated automatically on server side on ' + new Date().toISOString() +
+                     '. All changes would be lost. */ \n\n'))
         .pipe(gulpif(options.debug, sourcemaps.write()))
         .pipe(gulp.dest(PROJECT_PATH.css));
     cb();
@@ -143,7 +143,10 @@ function icons_task(cb) {
         .on('glyphs', function(glyphs, opts) {
             gutil.log.bind(glyphs, opts);
         })
-        .pipe(gulp.dest(PROJECT_PATH.fonts));
+        .pipe(gulp.dest(PROJECT_PATH.fonts))
+        .pipe(browser_sync.reload({
+            stream: true,
+        }))
     cb();
 }
 
@@ -160,8 +163,25 @@ function lint_javascript_task(cb) {
     cb();
 }
 
+// Django Dev Server Task
+function runserver_task(cb) {
+    var proc = exec('python manage.py runserver');
+    cb();
+}
+
+// Browser Sync Task
+// gulp.task('browserSync', ['runserver'], function() {});
+function browser_sync_task(cb) {
+    browser_sync.init({
+        notify: false,
+        port: DEFAULT_PORT,
+        proxy: 'localhost:' + DEFAULT_PORT,
+    });
+}
+
 // Watch Task
 function watch_task(cb) {
+    gulp.watch(PROJECT_PATTERNS.html, browser_sync.reload);
     gulp.watch(PROJECT_PATTERNS.sass, gulp.series(sass_task));
     // gulp.watch(PROJECT_PATTERNS.js, lint_javascript_task);
     cb();
@@ -171,7 +191,7 @@ function watch_task(cb) {
 
 exports.sass = sass_task;
 exports.build = gulp.series(sass_task);
-exports.default = gulp.series(sass_task, watch_task);
+exports.default = gulp.series(browser_sync_task, sass_task, watch_task);
 exports.lint = gulp.series(lint_javascript_task);
 
 // #################################################################################################
@@ -190,19 +210,3 @@ exports.lint = gulp.series(lint_javascript_task);
 // }
 //
 // gulp.task('sass', task('sass'));
-
-// #################################################################################################
-
-// GULP_MODE === 'production' means we have a limited subset of tasks,
-// namely sass, bower and lint to speed up the deployment / installation process.
-// if (process.env.GULP_MODE !== 'production') {
-//     gulp.task('images', task('images'));
-//     gulp.task('preprocess', gulp.series('sass', 'images')); // , 'docs'
-//     gulp.task('icons', task('icons'));
-//
-//     gulp.task('browser', task('browser'));
-//
-//     // ???
-//     webdriverUpdate = require('gulp-protractor').webdriver_update;
-//     gulp.task('tests:webdriver', webdriverUpdate);
-// }
