@@ -7,21 +7,21 @@
     <li class="nav-item {% if child.selected %} active{% endif %} {% if child.children and dropdown %}dropdown{% endif %}">
 	<a href="{{ child.get_absolute_url }}"
 	    {% if child.children and not child.parent and dropdown %}
-	    class="nav-link dropdown-toggle" id="navbar_dropdown_..." role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+	    class=" nav-link dropdown-toggle" id="navbar_dropdown - {{ child.title }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
 	    {% else %}
-	    class="nav-link"
-	    {% endif %}>
-            <span>
-		{{ child.get_menu_title }}
-            </span>
+	    class= "nav-link"
+	    {% endif %}
+	>
+	    {{ child.title }}
 	</a>
-	{% comment %}
-	{% if child.children and not child.parent and dropdown %}
-	    <div class="dropdown-menu" aria-labelledby="navbar_dropdown_...">
-		{% show_menu from_level to_level extra_inactive extra_active template "" "" child %}
-		<a class="dropdown-item" href="...">...</a>
+	{# Render sub-menu #}
+	{% if child.children and dropdown %}
+	    <div class="dropdown-menu" aria-labelledby="navbar_dropdown - {{ child.title }}">
+		{# {% show_menu from_level to_level extra_inactive extra_active template "" "" child %} #}
+		{% for child2 in child.children %}
+		    <a class="dropdown-item" href="{{ child2.get_absolute_url }}">{{ child2.title }}</a>
+		{% endfor %}
 	    </div>
 	{% endif %}
-	{% endcomment %}
     </li>
 {% endfor %}
