@@ -1,3 +1,9 @@
+# Gulp
+
+* https://stackoverflow.com/questions/35531334/how-to-use-gulp-browsersync-with-django
+* https://pypi.org/project/django-bsync/
+* https://www.browsersync.io
+
 # Django CMS
 
 * https://code.djangoproject.com/wiki/Emacs
