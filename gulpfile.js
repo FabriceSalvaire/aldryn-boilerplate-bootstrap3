@@ -61,7 +61,7 @@ var PROJECT_PATH = {
     icons: PROJECT_ROOT + '/private/icons', // Doesn't exists !!!
     images: PROJECT_ROOT + '/static/img',
     js: PROJECT_ROOT + '/static/js',
-    sass: PROJECT_ROOT + '/private/sass',
+    sass: PROJECT_ROOT + '/scss',
 };
 
 var PROJECT_PATTERNS = {
@@ -134,7 +134,7 @@ function icons_task(cb) {
                 formats: ['ttf', 'eot', 'woff', 'svg'],
                 fontPath: 'static/fonts/',
                 path: PROJECT_PATH.sass + '/libs/_iconfont.scss',
-                targetPath: '../../../private/sass/layout/_iconography.scss'
+                targetPath: '../../../scss/layout/_iconography.scss'
             })
         )
         .pipe(
