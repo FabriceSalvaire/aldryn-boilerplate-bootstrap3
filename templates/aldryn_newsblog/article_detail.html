@@ -16,7 +16,7 @@
 {% block newsblog_footer %}
     <div class="aldryn-newsblog-pager">
 	<div class="d-flex justify-content-between">
-	    <div>
+	    <div class="aldryn-newsblog-pager-button">
 		{% if prev_article %}
 		    <a href="{{ prev_article.get_absolute_url }}">
 			<i class="fas fa-chevron-left" aria-hidden="true"></i> {% trans "Previous Article" %}
@@ -27,12 +27,12 @@
 		    </span>
 		{% endif %}
 	    </div>
-	    <div>
+	    <div class="aldryn-newsblog-pager-button">
 		<a href="{% namespace_url "article-list" %}">
 		    <i class="fas fa-arrow-up" aria-hidden="true"></i> {% trans "Back to Overview" %}
 		</a>
 	    </div>
-	    <div>
+	    <div class="aldryn-newsblog-pager-button">
 		{% if next_article %}
                     <a href="{{ next_article.get_absolute_url }}">
 			{% trans "Next Article" %} <i class="fas fa-chevron-right" aria-hidden="true"></i>

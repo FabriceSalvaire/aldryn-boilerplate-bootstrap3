@@ -2,20 +2,50 @@
 // Newsblog
 
 $newsblog-rule-linewidth: 2px;
-$newsblog-rule-color: $gray-lighter;
+$newsblog-rule-color: $gray-300;
+$newsblog-author-image-size: 3rem;
+$newsblog-border-radius: 4px;
+$newsblog-border-radius-round: 40%;
+$newsblog-tag-background: $gray-700;
 
+// #####################################
+
+// News metadata : author and data
+.aldryn-newsblog-meta {
+    // Author image
+    img {
+	@extend .m-0;
+	@extend .mr-2;
+	@include rised-component();
+	width: $newsblog-author-image-size;
+	height: $newsblog-author-image-size;
+	border-radius: 50%; // round shape
+    }
+
+    p {
+	@extend .m-0;
+    }
+}
+
+// #####################################
+// Article list
+
+// Used for article summary in an article list
+// templates/aldryn_newsblog/includes/article.html
 .aldryn-newsblog-article {
     // Add a rule
-    // padding-top: 2*$padding-large-vertical;
-    padding-bottom: 2*$padding-large-vertical;
+
+    // @extend .py-3;
+    @extend .pb-3;
+
     // border-bottom: $newsblog-rule-linewidth solid $newsblog-rule-color;
 
     & + hr {
         text-align: center;
         &::after {
-            color: #AAA;
+            color: $gray-500;
             font-family: "Gabriela",sans-serif;
-            font-size: 16pt;
+            font-size: 1rem;
             content: "§";
             display: inline-block;
             position: relative;
@@ -24,99 +54,91 @@ $newsblog-rule-color: $gray-lighter;
             background: #FFF 0% 0% repeat scroll none;
         }
     }
-}
 
-// Set category typography
-.aldryn-newsblog .category {
-    font-weight: 700;
-}
-
-// News metadata : author and data
-.aldryn-newsblog-meta {
-    // Author image
-    img {
-	@include rised-component();
-	width: 40px;
-	height: 40px;
-	margin: 0 $padding-small-horizontal 0 0; // thumbnail-padding
-	border-radius: 50%; // $thumbnail-border-radius;
-    }
-
-    p {
-	margin: 0;
+    // Set category typography
+    .category {
+	// @extend .font-weight-bold;
+	font-weight: 700; // bold
     }
 }
 
 .aldryn-newsblog-pagination {
-    // Center pagination
-    text-align: center;
+    @extend .d-flex;
+    @extend .justify-content-center;
 }
 
 // #####################################
 // Newsblog Sidebar
 
-// Add a rule to separate elements in the sidebar
-.aldryn-newsblog-article-search,
-.aldryn-newsblog-authors,
-.aldryn-newsblog-categories,
-.aldryn-newsblog-recommended,
-.aldryn-newsblog-tags {
-    padding-bottom: $padding-large-vertical;
-    border-bottom: $newsblog-rule-linewidth solid $newsblog-rule-color;
-}
+.aldryn-newsblog-sidebar {
+    // Add a rule to separate elements in the sidebar
+    // .aldryn-newsblog-article-search,
+    .aldryn-newsblog-authors,
+    .aldryn-newsblog-categories,
+    .aldryn-newsblog-recommended,
+    .aldryn-newsblog-tags {
+	@extend .mb-3;
+	border-bottom: $newsblog-rule-linewidth solid $newsblog-rule-color;
+    }
 
-// Element title in the sidebar
-.aldryn-newsblog-sidebar h3 {
-    display: inline-block; // to restrict rule to the title width
-    font-size: $font-size-base;
-    margin-bottom: $padding-large-vertical;
-    // add a rule
-    padding-bottom: $padding-small-vertical;
-    // border-bottom: $newsblog-rule-linewidth solid $mytheme-highlighted-color;
+    // Element title in the sidebar
+    h6 {
+	@extend .mt-3;
+    }
 }
 
 .aldryn-newsblog-categories {
-    .badge {
-	// display: none;
-	float: right;
+    ul {
+	@extend .list-unstyled;
+	// useless
+	// @extend .d-flex;
+	// @extend .flex-column;
+
+	// issue: badge height = line height
+	// li {
+	//     @extend .d-flex;
+	//     @extend .flex-row;
+	//     @extend .justify-content-between;
+	//     @extend .py-0;
+	//     @extend .my-0;
+	// }
     }
 
     a {
-	// color: $text-color;
+	@extend .pl-2;
 	text-transform: uppercase;
-	display: block; // add margin bottom space
-	margin-bottom: $padding-small-vertical;
-	padding-left: $padding-small-horizontal;
+	@extend .py-0;
+	@extend .my-0;
+	// display: block; // add margin bottom space
+	// @extend .mb-2;
     }
 
+    // show a vertical rule before
     .active a,
     a:hover {
-	// color: $mytheme-highlighted-color;
-	border-left: $newsblog-rule-linewidth solid $link-hover-color; // $mytheme-highlighted-color
+	border-left: $newsblog-rule-linewidth solid $link-hover-color;
     }
 }
 
 .aldryn-newsblog-authors {
-    margin-top: $padding-small-vertical; // Fixme: 
-
+    // ???
     .aldryn-newsblog-meta {
-	// font-size: 13px;
-	min-height: 50px;
-	// padding: 0;
-	// border-bottom: none;
+    	min-height: $newsblog-author-image-size*1.25;
     }
+}
 
+.aldryn-newsblog-categories, .aldryn-newsblog-authors {
     .badge {
-	float: right !important;
+	float: right; // Fixme: author
+	border-radius: $newsblog-border-radius-round;
     }
 }
 
 @mixin aldryn-newsblog-tags() {
-    background-color: $gray-dark;
-    border-radius: $border-radius-base;
-    padding: $padding-small-vertical $padding-small-horizontal $padding-small-vertical $padding-small-horizontal;
-    margin-top: $padding-small-vertical;
-    margin-left: $padding-small-vertical; // Fixme: for next items
+    background-color: $newsblog-tag-background;
+    border-radius: $newsblog-border-radius;
+    @extend .p-1;
+    @extend .mt-1;
 }
 
 .aldryn-newsblog-tags ul > li {
@@ -124,32 +146,32 @@ $newsblog-rule-color: $gray-lighter;
     @include aldryn-newsblog-tags();
 
     a {
-	color: #fff;
+	color: $white;
     }
 
     .badge {
-	background-color: $gray-dark;
-	padding-right: 0;
+	@extend .pr-0;
+	background-color: $newsblog-tag-background;
 	font-size: 70%;
     }
 }
 
-.aldryn-newsblog-article-search {
-    margin-top: $padding-small-vertical;
-}
+// .aldryn-newsblog-article-search {
+// }
 
 // #####################################
-// Newsblog Sidebar
+// Article Detail
 
 .aldryn-newsblog-pager {
-    .pager li {
-	& > a, & > span, & > span.pager-back {
-	    display: inline-block;
-	    padding: 5px 14px;
-	    border: none;
-	    &:hover {
-		background-color: $gray-lighter;
-	    }
+    @extend .mb-3;
+
+    .aldryn-newsblog-pager-button {
+	@extend .px-2;
+	@extend .py-1;
+	border-radius: $newsblog-border-radius*3;
+
+	&:hover {
+	    background-color: $gray-200;
 	}
 
 	a {
@@ -158,20 +180,18 @@ $newsblog-rule-color: $gray-lighter;
     }
 }
 
-// #####################################
-// Article Detail
-
 .aldryn-newsblog-detail { // article.aldryn-newsblog-article
     p.tags {
-	margin-top: $padding-large-vertical;
+	@extend .py-3;
 
 	a {
 	    @include aldryn-newsblog-tags();
-	    color: #fff;
+	    @extend .ml-1; // for next items in article details
+	    color: $white;
 	}
     }
 
     .lead {
-	margin-top: $padding-large-vertical*3;
+	@extend .mt-3;
     }
 }
