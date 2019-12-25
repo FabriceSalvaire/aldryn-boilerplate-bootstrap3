@@ -115,7 +115,10 @@ function sass_task(cb) {
         .pipe(header('/* This file was generated automatically on server side on ' + new Date().toISOString() +
                      '. All changes would be lost. */ \n\n'))
         .pipe(gulpif(options.debug, sourcemaps.write()))
-        .pipe(gulp.dest(PROJECT_PATH.css));
+        .pipe(gulp.dest(PROJECT_PATH.css))
+        .pipe(browser_sync.reload({
+            stream: true,
+        }));
     cb();
 }
 
@@ -143,10 +146,7 @@ function icons_task(cb) {
         .on('glyphs', function(glyphs, opts) {
             gutil.log.bind(glyphs, opts);
         })
-        .pipe(gulp.dest(PROJECT_PATH.fonts))
-        .pipe(browser_sync.reload({
-            stream: true,
-        }))
+        .pipe(gulp.dest(PROJECT_PATH.fonts));
     cb();
 }
 
@@ -177,6 +177,7 @@ function browser_sync_task(cb) {
         port: DEFAULT_PORT,
         proxy: 'localhost:' + DEFAULT_PORT,
     });
+    cb();
 }
 
 // Watch Task
