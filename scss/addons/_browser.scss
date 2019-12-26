@@ -10,6 +10,8 @@
 
 // Fimxe: how to check ???
 
+$old-browser-line-height-computed: 20pxw;
+
 * html .browser-outdated {
     position: absolute;
 }
@@ -26,7 +28,7 @@
     // do not add paddings or margins on the container
     width: 100%;
     height: auto;
-    background-color: $brand-danger;
+    background-color: $danger;
 
     h3,
     p {
@@ -36,15 +38,15 @@
         color: #fff;
         border: 2px solid #fff;
         &:hover {
-            color: $brand-danger;
+            color: $danger;
             background: #fff;
         }
     }
 
     .last {
         position: absolute;
-        top: $line-height-computed / 2;
-        right: $line-height-computed;
+        top: $old-browser-line-height-computed / 2;
+        right: $old-browser-line-height-computed;
         a {
             display: inline-block;
             color: #fff;
@@ -57,7 +59,7 @@
     // add spacer in order for cross styling between noscript and out-of-date
     .btn-outline,
     noscript h3 {
-        margin-bottom: $line-height-computed;
+        margin-bottom: $old-browser-line-height-computed;
     }
 }
 

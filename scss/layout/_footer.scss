@@ -6,6 +6,7 @@
 // getting to large
 
 footer {
+    @extend .mt-3;
     @extend .py-3;
     @include rised-component();
     @include white_on_dark();

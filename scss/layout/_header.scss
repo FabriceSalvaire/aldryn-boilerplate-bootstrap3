@@ -64,11 +64,11 @@ $breadcrumb-li-border-colour: #ccc;
 $breadcrumb-li-colour: #444;
 */
 
-$breadcrumb-li-bg-colour: $gray-lighter;
+$breadcrumb-li-bg-colour: $gray-200;
 $breadcrumb-li-bg-colour-right: darken($breadcrumb-li-bg-colour, 5%);
 $breadcrumb-li-bg-colour-left: lighten($breadcrumb-li-bg-colour-right, 15%);
 $breadcrumb-li-border-colour: darken($breadcrumb-li-bg-colour-right, 20%);
-$breadcrumb-li-colour: $gray-dark; // darken($breadcrumb-li-bg-colour, 80%);
+$breadcrumb-li-colour: $gray-900; // darken($breadcrumb-li-bg-colour, 80%);
 
 $breadcrumb-triangle-size: 2em; // set the angle
 $breadcrumb-li-padding-horizontal: 1em;

@@ -6,14 +6,14 @@
     img.left {
 	clear: left;
 	float: left;
-	margin-right: 2*$padding-large-horizontal;
+	@extend .mr-3;
 	// text-align: left;
     }
 
     img.right {
 	clear: right;
 	float: right;
-	// margin-left: $padding-large-horizontal;
+	// @extend .ml-3;
 	// text-align: right;
     }
     img.centered {
@@ -24,7 +24,7 @@
 
 img {
     &.rotated-5-acw {
-	padding: $padding-large-horizontal;
+	@extend .p-3;
 	transform: rotate(-5deg);
     }
 }
