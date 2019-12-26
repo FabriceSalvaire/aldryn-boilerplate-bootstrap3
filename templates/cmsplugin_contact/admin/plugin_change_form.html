@@ -21,8 +21,9 @@
 			}
 		});
 	}
-
+	
 	$(document).ready(function(){
+		
 		$('#id_spam_protection_method').change(function() {
 			var curOption = $('#id_spam_protection_method :selected');
 			updateVisibility(curOption.html().toLowerCase());
@@ -31,34 +32,38 @@
 })(django.jQuery);
 //]]>
 </script>
+
 {% endblock extrahead %}
 
 {% block extrastyle %}{{ block.super }}
 <style type="text/css">
- div.form-row label {
-     width: 14em;
- }
- form .aligned p.help {
-     padding-left: 48px;
-     margin-left: 13em;
- }
+	div.form-row label {
+		width: 14em;
+	}
+	form .aligned p.help {
+		padding-left: 48px;
+		margin-left: 13em;
+	}
+	
+	{% if spam_protection_method != 1 or akismet_settings %}
+	div.form-row.field-akismet_api_key {
+		display: none;
+	}
+	{% endif %}
 
- {% if spam_protection_method != 1 or akismet_settings %}
- div.form-row.field-akismet_api_key {
-     display: none;
- }
- {% endif %}
-
- {% if spam_protection_method != 2 or recaptcha_settings %}
- div.form-row.field-recaptcha_public_key {
-     display: none;
- }
- div.form-row.field-recaptcha_private_key {
-     display: none;
- }
- div.form-row.field-recaptcha_theme {
-     display: none;
- }
- {% endif %}
+	{% if spam_protection_method != 2 or recaptcha_settings %}
+	div.form-row.field-recaptcha_public_key {
+		display: none;
+	}
+	div.form-row.field-recaptcha_private_key {
+		display: none;
+	}
+	div.form-row.field-recaptcha_theme {
+		display: none;
+	}
+    div.form-row.field-recaptcha_size {
+		display: none;
+	}
+	{% endif %}
 </style>
 {% endblock extrastyle %}

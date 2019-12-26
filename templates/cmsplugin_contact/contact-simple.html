@@ -1,0 +1,31 @@
+{# -*- engine: django -*- #}
+{% load i18n %}
+
+{% if form %}
+    <form action="." method="post">
+	<div class="form-group">
+            <label for="id_email">{% trans "Email" %}</label>
+            <input id="id_email" type="email" class="form-control" name="email" required="">
+	</div>
+	<div class="form-group">
+            <label for="id_subject">{% trans "Subject" %}</label>
+            <input  id="id_subject" type="text" class="form-control" name="subject">
+	</div>
+	<div class="form-group">
+            <label for="id_content">{% trans "Content" %}</label>
+            <textarea id="id_content" class="form-control" name="content" cols="40" rows="10" required=""></textarea>
+	</div>
+	<div class="form-group" style="display: none;">
+            <label for="id_my_name"></label>
+            <input id="id_my_name" type="hidden" class="form-control" name="my_name" value="Contact">
+	</div>
+	<div class="form-group" style="display: none;">
+	    <label for="id_accept_terms">Are you a robot?</label>
+	    <input id="id_accept_terms" type="checkbox" name="accept_terms">
+	</div>
+	<button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>
+	{% csrf_token %}
+    </form>
+{% else %}
+    {{ contact.thanks|safe }}
+{% endif %}
